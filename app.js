@@ -2,21 +2,21 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 
-const weather = express();
+const psiread = express();
 
 const https = require('https');
 const host = 'api.data.gov.sg';
 
-weather.use(
+psiread.use(
   bodyParser.urlencoded({
     extended: true
   })
 );
 
-weather.use(bodyParser.json());
+psiread.use(bodyParser.json());
 
 /* GET home page. */
-weather.post('/', function (req, res) {
+psiread.post('/', function (req, res) {
   
     //let sglocation = req.body.result.parameters['location'];
   
@@ -30,7 +30,7 @@ weather.post('/', function (req, res) {
         date  = req.body.result.parameters['date'];
     }
   /* execute the callWeatherAPI function   */
-  callWeatherApi(datetime,date).then((output) => {
+  callPSIApi(datetime,date).then((output) => {
         // Return the results of the weather API to Dialogflow
        res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify({ 'speech': output, 'displayText': output }));
@@ -43,8 +43,8 @@ weather.post('/', function (req, res) {
     
 });
 
-//function to launch http call and check for the weather forecast on a given Singapore location 
-function callWeatherApi(datetime,date) {
+//function to launch http call and check for the Psi of Singapore 
+function callPSIApi(datetime,date) {
     return new Promise((resolve, reject) => {
         // Create the path for the HTTP request to get the weather
       let path = '/v1/environment/psi' +
@@ -72,13 +72,13 @@ function callWeatherApi(datetime,date) {
                 //for (i = 0; i != psitwentyfourhourly.length; i++) {
                   
                     //if (psitwentyfourhourly[i]['area']==location){
-                         output = 'Here are the PSI reading in Singapore ' 
-                           +'  National : '+ psitwentyfourhourly[0]['national'] 
-                           +'  North : '+ psitwentyfourhourly[0]['north'] 
-                           +'  South : '+ psitwentyfourhourly[0]['south']
-                           +'  East : '+ psitwentyfourhourly[0]['east']
-                           +'  West : '+ psitwentyfourhourly[0]['west']
-                           +'  Central : '+ psitwentyfourhourly[0]['central'];
+                         output = 'Here are the PSI reading in Singapore ' +
+                           '  National : '+ psitwentyfourhourly[0]['national'] +' '+
+                           '  North : '+ psitwentyfourhourly[0]['north'] +' '+
+                           '  South : '+ psitwentyfourhourly[0]['south'] +' '+
+                           '  East : '+ psitwentyfourhourly[0]['east'] +' '+
+                           '  West : '+ psitwentyfourhourly[0]['west'] +' '+
+                           '  Central : '+ psitwentyfourhourly[0]['central'];
                                             
                          //break;                 
                       //}
@@ -98,6 +98,6 @@ function callWeatherApi(datetime,date) {
 };
 
 
-weather.listen(process.env.PORT || 8000, function() {
+psiread.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
