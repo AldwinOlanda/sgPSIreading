@@ -64,7 +64,7 @@ function callPSIApi(datetime,date) {
                 let response = JSON.parse(body);
                 let items = response.items;
                 let readings = [];
-                readings = items[0]['readings'];
+                readings = items.readings;
                 let psitwentyfourhourly = [];
                 psitwentyfourhourly = readings[0]['psi_twenty_four_hourly'];
               
