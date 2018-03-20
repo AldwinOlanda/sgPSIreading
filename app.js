@@ -30,7 +30,7 @@ weather.post('/', function (req, res) {
         date  = req.body.result.parameters['date'];
     }
   /* execute the callWeatherAPI function   */
-  callWeatherApi(datetime,date,sglocation).then((output) => {
+  callWeatherApi(datetime,date).then((output) => {
         // Return the results of the weather API to Dialogflow
        res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify({ 'speech': output, 'displayText': output }));
@@ -44,7 +44,7 @@ weather.post('/', function (req, res) {
 });
 
 //function to launch http call and check for the weather forecast on a given Singapore location 
-function callWeatherApi(datetime,date,location) {
+function callWeatherApi(datetime,date) {
     return new Promise((resolve, reject) => {
         // Create the path for the HTTP request to get the weather
       let path = '/v1/environment/psi' +
