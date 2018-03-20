@@ -74,7 +74,7 @@ function callPSIApi(datetime,date) {
                 //for (i = 0; i != psitwentyfourhourly.length; i++) {
                   
                     //if (psitwentyfourhourly[i]['area']==location){
-                  output = 'Here are the PSI reading in Singapore ' +\n
+                  output = 'Here are the PSI reading in Singapore ' +\n+
                            '  National : '+psitwentyfourhourly['national'] +' '+\n+
                            '  North : '+ psitwentyfourhourly['north'] +' '+\n+
                            '  South : '+ psitwentyfourhourly['south'] +' '+\n+
