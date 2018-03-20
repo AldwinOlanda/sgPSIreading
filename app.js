@@ -47,7 +47,7 @@ weather.post('/', function (req, res) {
 function callWeatherApi(datetime,date,location) {
     return new Promise((resolve, reject) => {
         // Create the path for the HTTP request to get the weather
-      let path = '/v1/environment/2-hour-weather-forecast' +
+      let path = '/v1/environment/psi' +
             '?date_time=' + encodeURIComponent(datetime) + '&date=' + date;
              console.log('API Request: ' + host + path);
       
@@ -63,30 +63,28 @@ function callWeatherApi(datetime,date,location) {
                 // After all the data has been received parse the JSON for desired data
                 let response = JSON.parse(body);
                 let items = response.items;
-                let forecasts = [];
-                forecasts = items[0]['forecasts'];
+                let psitwentyfourhourly = [];
+                psitwentyfourhourly = items[0]['psi_twenty_four_hourly'];
               
                 //Loop through the data and check for the weather for the location given
-                let i = 0;
+                //let i = 0;
                 let output = '';
-                for (i = 0; i != forecasts.length; i++) {
+                //for (i = 0; i != psitwentyfourhourly.length; i++) {
                   
-                    if (forecasts[i]['area']==location){
-                         output = 'The condition in Singapore, ' + forecasts[i]['area'] +' is '+ forecasts[i]['forecast'];
-                         break;                 
-                      }
+                    //if (psitwentyfourhourly[i]['area']==location){
+                         output = 'Here are the PSI reading in Singapore, ' 
+                           +'  National : '+ psitwentyfourhourly[0]['national'] 
+                           +'  North : '+ psitwentyfourhourly[0]['north'] 
+                           +'  South : '+ psitwentyfourhourly[0]['south']
+                           +'  East : '+ psitwentyfourhourly[0]['east']
+                           +'  West : '+ psitwentyfourhourly[0]['west']
+                           +'  Central : '+ psitwentyfourhourly[0]['central'];
+                                            
+                         //break;                 
+                      //}
                                            
-                  }
-                  // in the event that the location is not existing, do another check and default the location to City  
-                  if (output==''){
-                   i = 0;
-                   for (i = 0; i != forecasts.length; i++) {
-                           if (forecasts[i]['area']=='City'){
-                               output = 'The condition in ' + forecasts[i]['area'] +' is '+ forecasts[i]['forecast'];
-                               break;                 
-                         }
-                   }
-                  }
+                  //}
+                  
               
                 // Resolve the promise with the output text
                 console.log(output);
