@@ -63,8 +63,8 @@ function callPSIApi(datetime,date) {
                 // After all the data has been received parse the JSON for desired data
                 let response = JSON.parse(body);
                 let items = response.items;
-                let psitwentyfourhourly = [];
-                psitwentyfourhourly = items[0]['psi_twenty_four_hourly'];
+                let readings = [];
+                readings = items[0]['readings'];
               
                 //Loop through the data and check for the weather for the location given
                 //let i = 0;
