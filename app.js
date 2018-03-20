@@ -18,7 +18,7 @@ weather.use(bodyParser.json());
 /* GET home page. */
 weather.post('/', function (req, res) {
   
-    let sglocation = req.body.result.parameters['location'];
+    //let sglocation = req.body.result.parameters['location'];
   
     let date = '';
     let datetime = '';
