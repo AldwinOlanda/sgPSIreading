@@ -72,7 +72,7 @@ function callWeatherApi(datetime,date,location) {
                 //for (i = 0; i != psitwentyfourhourly.length; i++) {
                   
                     //if (psitwentyfourhourly[i]['area']==location){
-                         output = 'Here are the PSI reading in Singapore, ' 
+                         output = 'Here are the PSI reading in Singapore ' 
                            +'  National : '+ psitwentyfourhourly[0]['national'] 
                            +'  North : '+ psitwentyfourhourly[0]['north'] 
                            +'  South : '+ psitwentyfourhourly[0]['south']
