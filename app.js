@@ -62,9 +62,9 @@ function callPSIApi(datetime,date) {
             res.on('end', () => {
                 // After all the data has been received parse the JSON for desired data
                 let response = JSON.parse(body);
-                //let items = response.items;
-                //let readings = [];
-                //readings = items[0]['readings'];
+                let items = response.items;
+                let readings = [];
+                readings = items[0]['readings'];
               
                 //Loop through the data and check for the weather for the location given
                 //let i = 0;
@@ -74,7 +74,7 @@ function callPSIApi(datetime,date) {
                     //if (psitwentyfourhourly[i]['area']==location){
                   output = 'Here are the PSI reading in Singapore '; 
                           //+
-                          // '  National : '+ psitwentyfourhourly[0]['national'] +' '+
+                          '  National : '+ readings[0]['psi_twenty_four_hourly'] +' '+
                           // '  North : '+ psitwentyfourhourly[0]['north'] +' '+
                           // '  South : '+ psitwentyfourhourly[0]['south'] +' '+
                           // '  East : '+ psitwentyfourhourly[0]['east'] +' '+
