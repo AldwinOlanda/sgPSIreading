@@ -29,9 +29,9 @@ psiread.post('/', function (req, res) {
         datetime = req.body.result.parameters['date']+'T12:00:00';
         date  = req.body.result.parameters['date'];
     }
-  /* execute the callWeatherAPI function   */
+  /* execute the callPsiAPI function   */
   callPSIApi(datetime,date).then((output) => {
-        // Return the results of the weather API to Dialogflow
+        // Return the results of the PSI API to Dialogflow
        res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify({ 'speech': output, 'displayText': output }));
     }).catch((error) => {
@@ -72,7 +72,7 @@ function callPSIApi(datetime,date) {
                 //for (i = 0; i != psitwentyfourhourly.length; i++) {
                   
                     //if (psitwentyfourhourly[i]['area']==location){
-                         output = 'Here are the PSI reading in Singapore ' +
+                  output = 'Here are the PSI reading in Singapore ' +
                            '  National : '+ psitwentyfourhourly[0]['national'] +' '+
                            '  North : '+ psitwentyfourhourly[0]['north'] +' '+
                            '  South : '+ psitwentyfourhourly[0]['south'] +' '+
