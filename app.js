@@ -18,8 +18,7 @@ psiread.use(bodyParser.json());
 /* GET home page. */
 psiread.post('/', function (req, res) {
   
-    //let sglocation = req.body.result.parameters['location'];
-  
+    
     let date = '';
     let datetime = '';
   
@@ -46,15 +45,12 @@ psiread.post('/', function (req, res) {
 //function to launch http call and check for the Psi of Singapore 
 function callPSIApi(datetime,date) {
     return new Promise((resolve, reject) => {
-        // Create the path for the HTTP request to get the weather
+        // Create the path for the HTTP request to get the psi
       let path = '/v1/environment/psi' +
             '?date_time=' + encodeURIComponent(datetime) + '&date=' + date;
              console.log('API Request: ' + host + path);
       
-         //res.setHeader('Content-Type', 'application/json');
-         //res.send(JSON.stringify({ 'speech': host, 'displayText': path }));
-         //return 
-      
+             
         // Make the HTTP request to get the weather
         https.get({ host: host, path: path }, (res) => {
             let body = ''; // var to store the response chunks
@@ -69,25 +65,16 @@ function callPSIApi(datetime,date) {
                 psitwentyfourhourly = readings['psi_twenty_four_hourly'];
               
                 //Loop through the data and check for the weather for the location given
-                //let i = 0;
                 let output = '';
-                //for (i = 0; i != psitwentyfourhourly.length; i++) {
-                  
-                    //if (psitwentyfourhourly[i]['area']==location){
-                  output = `Here are the PSI reading in Singapore 
+                                 
+                 output = `Here are the PSI reading in Singapore 
                              National : ${psitwentyfourhourly['national']} 
                              North : ${psitwentyfourhourly['north']} 
                              South : ${psitwentyfourhourly['south']} 
                              East : ${psitwentyfourhourly['east']} 
                              West : ${psitwentyfourhourly['west']} 
                              Central : ${psitwentyfourhourly['central']}.`;
-                                            
-                         //break;                 
-                      //}
-                                           
-                  //}
-                  
-              
+                                                           
                 // Resolve the promise with the output text
                 console.log(output);
                 resolve(output);
