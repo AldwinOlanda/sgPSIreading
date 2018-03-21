@@ -67,12 +67,12 @@ function callPSIApi(datetime,date) {
                 //Loop through the data and check for the weather for the location given
                 let output = '';
                                  
-                 output = `Here are the PSI reading in Singapore \n
-                             National : ${psitwentyfourhourly['national']} \n
-                             North : ${psitwentyfourhourly['north']} \n
-                             South : ${psitwentyfourhourly['south']} \n
-                             East : ${psitwentyfourhourly['east']} \n
-                             West : ${psitwentyfourhourly['west']} \n
+                 output = `Here are the PSI reading in Singapore
+                             National : ${psitwentyfourhourly['national']}
+                             North : ${psitwentyfourhourly['north']}
+                             South : ${psitwentyfourhourly['south']}
+                             East : ${psitwentyfourhourly['east']}
+                             West : ${psitwentyfourhourly['west']}
                              Central : ${psitwentyfourhourly['central']}.`;
                                                            
                 // Resolve the promise with the output text
