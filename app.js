@@ -77,7 +77,7 @@ function callPSIApi(datetime,date) {
                                                            
                 // Resolve the promise with the output text
                 console.log(output);
-                resolve(output);
+                resolve(output.toString());
             });
             res.on('error', (error) => {
                 reject(error);
